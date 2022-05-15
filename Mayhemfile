@@ -1,0 +1,10 @@
+image: ghcr.io/rishabh1024/ffproxy-fuzz:latest
+
+duration: 90
+
+project: ffproxy
+
+target: ffproxy-fuzz
+
+cmds:
+  - cmd: /fuzzer
