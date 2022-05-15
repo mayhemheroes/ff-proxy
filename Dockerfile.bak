@@ -7,8 +7,18 @@ RUN apk add --update alpine-sdk openssl-dev
 
 # Build ff
 RUN cd /code && \
-    FF_OPTIMIZE=1 make build && \
-    make install
+   LD=gcc CC=gcc \
+   ifeq ($(FF_OPTIMIZE), 1) \
+   OPTIMISE_FLAGS=-O3 -DFF_OPTIMIZE=1\
+   else
+   OPTIMISE_FLAGS=-O0\
+   endif\
+
+CC_FLAGS=-Wall -Wextra -std=c99 -D_GNU_SOURCE $(OPTIMISE_FLAGS) $(CCFLAGS)
+LD_FLAGS=$(LDFLAGS)
+SERVER_LIBS=-lm -lssl -lcrypto -lpthread
+CLIENT_LIBS=-lssl -lcrypto
+
 
 FROM alpine:latest
 

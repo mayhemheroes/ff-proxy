@@ -119,10 +119,9 @@ test: test_build
 
 fuzz: build
 	clang -g -fsanitize=fuzzer,address \
-		$(CC_FLAGS) $(LD_FLAGS) -o build/fuzzer $(filter-out build/obj/main.o, $(wildcard build/obj/*.o)) \
+		$(CC_FLAGS) $(LD_FLAGS) -o fuzzer $(filter-out build/obj/main.o, $(wildcard build/obj/*.o)) \
 		$(filter-out build/obj/client/main.o, $(wildcard build/obj/client/*.o)) \
 		tests/fuzzing/fuzzer.c $(SERVER_LIBS)
-	build/fuzzer tests/fuzzing/corpus -artifact_prefix=tests/fuzzing/crashes/
 
 valgrind: test_build
 	valgrind --tool=memcheck --leak-check=full  --num-callers=100 --error-exitcode=1 build/tests
