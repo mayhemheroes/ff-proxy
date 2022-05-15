@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ "ff-proxy" }}
+  IMAGE_NAME: ${{ ff-proxy }}
 
 jobs:
   build:
