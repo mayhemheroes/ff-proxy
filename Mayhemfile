@@ -1,8 +1,6 @@
-image: ghcr.io/rishabh1024/ffproxy-fuzz:latest
-
 duration: 90
 
-project: ffproxy
+project: ff-proxy
 
 target: ffproxy-fuzz
 
